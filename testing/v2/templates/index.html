@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Web App</title>
+    <style>
+        /* General Styles */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h3 {
+            color: #bb86fc;
+            text-align: center;
+        }
+
+        /* Center the form */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form styling */
+        form {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #e0e0e0;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a368d6;
+        }
+
+        /* Result styling */
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .result p {
+            font-size: 1.2em;
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 5px;
+            color: #bb86fc;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption Web App</h1>
+        <form method="POST" action="/encrypt">
+            <label for="message">Enter Message:</label>
+            <input type="text" id="message" name="message" required>
+
+            <label for="encryption_type">Select Encryption:</label>
+            <select id="encryption_type" name="encryption_type" required>
+                <option value="caesar">Caesar Cipher</option>
+                <option value="aes">AES</option>
+            </select>
+
+            <div id="caesar-options">
+                <label for="shift">Shift (Caesar Cipher):</label>
+                <input type="number" id="shift" name="shift" value="3">
+            </div>
+
+            <div id="aes-options">
+                <label for="key">Key (16 characters for AES):</label>
+                <input type="text" id="key" name="key" value="thisisakey123456">
+            </div>
+
+            <button type="submit">Encrypt</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>Encrypted Message:</h3>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

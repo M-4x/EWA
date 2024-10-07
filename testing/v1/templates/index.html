@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App UI</title>
+    <style>
+        /* Set background and text colors for dark mode */
+        body {
+            background-color: #121212;  /* Dark background */
+            color: #e0e0e0;  /* Light text for contrast */
+            font-family: 'Arial', sans-serif;  /* Font choice */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Heading styles for the title */
+        h1 {
+            color: #bb86fc;  /* Highlight color for headings */
+            text-align: center;  /* Centered text */
+        }
+
+        /* Center the form and align it vertically */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Style for the form box */
+        form {
+            background-color: #1f1f1f;  /* Dark form background */
+            padding: 30px;  /* Padding around form */
+            border-radius: 10px;  /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+            width: 100%;
+            max-width: 400px;  /* Limit form width */
+        }
+
+        /* Style for labels above inputs */
+        label {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Style for text inputs */
+        input[type="text"], input[type="number"] {
+            width: 100%;  /* Full width of the container */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;  /* No borders */
+            border-radius: 5px;
+            background-color: #282828;  /* Darker background */
+            color: #e0e0e0;  /* Light text */
+        }
+
+        /* Style for the submit button */
+        button {
+            background-color: #bb86fc;  /* Highlight color */
+            color: white;
+            border: none;  /* No border */
+            border-radius: 5px;  /* Rounded button */
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;  /* Pointer cursor on hover */
+            transition: background-color 0.3s ease;  /* Smooth color change on hover */
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #a368d6;  /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption Web App</h1>
+
+        <!-- Form for user input -->
+        <form>
+            <label for="input1">Input Field 1:</label>
+            <input type="text" id="input1" name="input1" required>
+
+            <label for="input2">Input Field 2:</label>
+            <input type="text" id="input2" name="input2" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
