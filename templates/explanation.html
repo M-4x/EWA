@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explanation - Encryption Web App</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .menu {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .menu button {
+            background-color: #bb86fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px;
+            width: 100%;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .menu button:hover {
+            background-color: #a368d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Explanation Level</h1>
+        <div class="menu">
+            <form action="/explanation/layman" method="get">
+                <button type="submit">Layman's Explanation</button>
+            </form>
+            <form action="/explanation/comprehensive" method="get">
+                <button type="submit">Comprehensive Explanation</button>
+            </form>
+            <form action="/explanation/implementation" method="get">
+                <button type="submit">Implementation Details</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

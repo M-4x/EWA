@@ -1,0 +1,56 @@
+
+<!DOCTYPE html><html lang="en"><head>
+<style>
+    h1, h2, h3 {
+        color: #bb86fc;
+    }
+</style>
+
+<style>
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .content {
+        background-color: #1f1f1f;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        color: #bb86fc;
+    }
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AES - Comprehensive Explanation</title><style>/* Styling similar to previous examples */</style></head><body>
+<div class="container"><div class="content"><h1>AES (Advanced Encryption Standard)</h1>
+        <h2>Comprehensive Explanation</h2>
+        <p>AES (Advanced Encryption Standard) is a symmetric encryption method using a shared key for both encryption 
+        and decryption. It processes data in 128-bit blocks, with key sizes of 128, 192, or 256 bits.</p>
+        <h3>Encryption Process:</h3>
+        <ul>
+            <li><b>SubBytes:</b> Each byte is substituted using a complex S-Box, adding non-linearity.</li>
+            <li><b>ShiftRows:</b> Each row in the matrix is cyclically shifted left, introducing diffusion.</li>
+            <li><b>MixColumns:</b> Column values are transformed with a fixed matrix, further mixing the data.</li>
+            <li><b>AddRoundKey:</b> Each byte is XORed with a round-specific key.</li>
+        </ul>
+        <h3>Security Features:</h3>
+        <p>AES is highly secure and resistant to cryptographic attacks. It’s used extensively in security protocols like SSL/TLS.</p>
+    </div></div></body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Web App</title>
+    <style>
+         /* Set background and text colors for dark mode */
+         body {
+            background-color: #121212;  /* Dark background */
+            color: #e0e0e0;  /* Light text for contrast */
+            font-family: 'Arial', sans-serif;  /* Font choice */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Heading styles for the title */
+        h1, h3 {
+            color: #bb86fc;  /* Highlight color for headings */
+            text-align: center;  /* Centered text */
+        }
+
+        /* Center the form and align it vertically */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Style for the form box */
+        form {
+            background-color: #1f1f1f;  /* Dark form background */
+            padding: 30px;  /* Padding around form */
+            border-radius: 10px;  /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+            width: 100%;
+            max-width: 400px;  /* Limit form width */
+        }
+
+        /* Style for labels above inputs */
+        label {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Style for text inputs and dropdowns */
+        input[type="text"], input[type="number"], select {
+            width: 100%;  /* Full width of the container */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;  /* No borders */
+            border-radius: 5px;
+            background-color: #282828;  /* Darker background */
+            color: #e0e0e0;  /* Light text */
+        }
+
+        /* Style for the submit button */
+        button {
+            background-color: #bb86fc;  /* Highlight color */
+            color: white;
+            border: none;  /* No border */
+            border-radius: 5px;  /* Rounded button */
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;  /* Pointer cursor on hover */
+            transition: background-color 0.3s ease;  /* Smooth color change on hover */
+        }
+
+        /* Button hover effect */
+        button:hover {
+            background-color: #a368d6;  /* Darker shade on hover */
+        }
+
+        /* Style for the encrypted result box */
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .result p {
+            font-size: 1.2em;
+            background-color: #333333;  /* Background for result text */
+            padding: 10px;
+            border-radius: 5px;
+            color: #bb86fc;  /* Highlighted text */
+        }
+    </style>
+    <script>
+        function toggleFields() {
+            var encryptionType = document.getElementById("encryption_type").value;
+            var caesarOptions = document.getElementById("caesar-options");
+            var aesOptions = document.getElementById("aes-options");
+            var desOptions = document.getElementById("des-options");
+            var rsaOptions = document.getElementById("rsa-options");
+
+            caesarOptions.style.display = encryptionType === "caesar" ? "block" : "none";
+            aesOptions.style.display = encryptionType === "aes" ? "block" : "none";
+            desOptions.style.display = encryptionType === "des" ? "block" : "none";
+            rsaOptions.style.display = encryptionType === "rsa" ? "block" : "none";
+        }
+
+        window.onload = toggleFields;
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Encryption Web App</h1>
+        <form method="POST" action="/encrypt">
+            <label for="message">Enter Message:</label>
+            <input type="text" id="message" name="message" required>
+
+            <label for="encryption_type">Select Encryption:</label>
+            <select id="encryption_type" name="encryption_type" onchange="toggleFields()" required>
+                <option value="caesar">Caesar Cipher</option>
+                <option value="aes">AES</option>
+                <option value="des">DES</option>
+                <option value="rsa">RSA</option>
+            </select>
+
+            <div id="caesar-options">
+                <label for="shift">Shift (Caesar Cipher):</label>
+                <input type="number" id="shift" name="shift" value="3">
+            </div>
+
+            <div id="aes-options" style="display: none;">
+                <label for="key">Key (16 characters for AES):</label>
+                <input type="text" id="key" name="key" value="thisisakey123456">
+            </div>
+
+            <div id="des-options" style="display: none;">
+                <label for="key">Key (8 characters for DES):</label>
+                <input type="text" id="key" name="key" value="deskey12">
+            </div>
+
+            <div id="rsa-options" style="display: none;">
+                <p>RSA key is generated automatically. No input required.</p>
+            </div>
+
+            <button type="submit">Encrypt</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>Encrypted Message:</h3>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

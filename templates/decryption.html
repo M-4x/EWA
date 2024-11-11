@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Web App - Decrypt</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        label {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #282828;
+            color: #e0e0e0;
+        }
+        button {
+            background-color: #bb86fc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #a368d6;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result p {
+            font-size: 1.2em;
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 5px;
+            color: #bb86fc;
+        }
+    </style>
+    <script>
+        function toggleDecryptionFields() {
+            var decryptionType = document.getElementById("decryption_type").value;
+            document.getElementById("caesar-options").style.display = decryptionType === "caesar" ? "block" : "none";
+            document.getElementById("aes-options").style.display = decryptionType === "aes" ? "block" : "none";
+            document.getElementById("des-options").style.display = decryptionType === "des" ? "block" : "none";
+            document.getElementById("rsa-options").style.display = decryptionType === "rsa" ? "block" : "none";
+        }
+
+        window.onload = toggleDecryptionFields;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption Web App - Decrypt</h1>
+        <form method="POST" action="/decryption">
+            <label for="encrypted_message">Enter Encrypted Message:</label>
+            <input type="text" id="encrypted_message" name="encrypted_message" required>
+
+            <label for="decryption_type">Select Decryption:</label>
+            <select id="decryption_type" name="decryption_type" onchange="toggleDecryptionFields()" required>
+                <option value="caesar">Caesar Cipher</option>
+                <option value="aes">AES</option>
+                <option value="des">DES</option>
+                <option value="rsa">RSA</option>
+            </select>
+
+            <div id="caesar-options">
+                <label for="shift">Shift (Caesar Cipher):</label>
+                <input type="number" id="shift" name="shift" value="3">
+            </div>
+
+            <div id="aes-options" style="display: none;">
+                <label for="key">Key (16 characters for AES):</label>
+                <input type="text" id="key" name="key" value="thisisakey123456">
+            </div>
+
+            <div id="des-options" style="display: none;">
+                <label for="key">Key (8 characters for DES):</label>
+                <input type="text" id="key" name="key" value="deskey12">
+            </div>
+
+            <div id="rsa-options" style="display: none;">
+                <label for="private_key">RSA Private Key:</label>
+                <textarea id="private_key" name="private_key" rows="4"></textarea>
+            </div>
+
+            <button type="submit">Decrypt</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h3>Decrypted Message:</h3>
+            <p>{{ result }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
