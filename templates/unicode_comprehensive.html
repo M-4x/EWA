@@ -1,54 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicode - Comprehensive Explanation</title>
+    <style>
+        body { 
+            background-color: #121212; 
+            color: #e0e0e0; 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        .container { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: center; 
+            height: 100vh; 
+            padding: 20px;
+            margin: 20px auto;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+        .content { 
+            background-color: #1f1f1f; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+            max-width: 600px; 
+            line-height: 1.6; 
+        }
+        h1 { color: #bb86fc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Unicode Encryption</h1>
+            <h2>Comprehensive Explanation</h2>
+            <p>Unicode encryption is a method of scrambling text by shifting the Unicode values of characters. This creates a seemingly random message that can only be decrypted with the same key and rules used for encryption. Let’s explore how it works in detail.</p>
+            
+            <h3>How It Works:</h3>
+            <ul>
+                <li><b>Unicode Basics:</b> Every character you type—letters, symbols, emojis—has a unique numeric value called a Unicode code point.</li>
+                <li><b>Shifting:</b> A numeric shift is applied to each character's Unicode value. The shift value determines how much the character is "moved" on the Unicode scale.</li>
+                <li><b>Multipliers:</b> To make the encryption more complex, the shift is multiplied by a series of numbers called multipliers. These multipliers change the amount the Unicode value is shifted for each character.</li>
+                <li><b>Normalization:</b> After shifting, the Unicode values are wrapped around to stay within the valid Unicode range, ensuring no invalid characters appear.</li>
+                <li><b>Final Output:</b> The adjusted Unicode values are converted back into characters, resulting in the encrypted message.</li>
+            </ul>
 
-<!DOCTYPE html><html lang="en"><head>
-<style>
-    h1, h2, h3 {
-        color: #bb86fc;
-    }
-</style>
+            <h3>Example:</h3>
+            <p>
+                Let’s encrypt the word <strong>"Hello"</strong> with:
+            </p>
+            <ul>
+                <li><strong>Shift:</strong> 5</li>
+                <li><strong>Multipliers:</strong> 2, 3, 4</li>
+            </ul>
+            <p>Here’s the result:</p>
+            <ul>
+                <li>"H" (72) is shifted to "R" (82).</li>
+                <li>"e" (101) is shifted to "" (134).</li>
+                <li>"l" (108) is shifted to "ô" (244).</li>
+                <li>The second "l" is similarly shifted to "ž" (382).</li>
+                <li>"o" (111) is shifted to "Ψ" (936).</li>
+            </ul>
+            <p>The encrypted message is <strong>"RôžΨ"</strong>.</p>
+            
+            <h3>Decryption:</h3>
+            <p>
+                Decryption reverses the process: the encrypted Unicode values are adjusted back using the same shift and multipliers, recovering the original message.
+            </p>
 
-<style>
-    body {
-        background-color: #121212;
-        color: #e0e0e0;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .content {
-        background-color: #1f1f1f;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        max-width: 600px;
-        line-height: 1.6;
-    }
-
-    h1 {
-        color: #bb86fc;
-    }
-</style>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unicode - Comprehensive Explanation</title><style>/* Consistent style across pages */</style></head><body>
-<div class="container"><div class="content"><h1>Unicode Cipher</h1>
-        <h2>Comprehensive Explanation</h2>
-        <p>The Unicode Cipher method is a flexible encryption approach that shifts characters across the Unicode 
-        spectrum. Unlike the Caesar Cipher, which is limited to alphabetic shifts, this cipher can shift any 
-        character, making it useful for messages that include symbols and non-alphabetic characters.</p>
-        <h3>Process:</h3>
-        <p>Each character's Unicode value is shifted by a specific amount, potentially wrapping within a range 
-        of Unicode values to maintain readability.</p>
-        <h3>Unique Features:</h3>
-        <p>This cipher accommodates a wide range of characters, though it lacks the mathematical robustness of 
-        more advanced ciphers like RSA or AES.</p>
-    </div></div></body></html>
+            <h3>Why Use Unicode Encryption?</h3>
+            <p>
+                Unicode encryption is highly versatile. It can handle any character supported by Unicode—letters, numbers, symbols, and even emojis. This makes it a great choice for creating unique, secure messages.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,74 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<style>
-    h1, h2, h3 {
-        color: #bb86fc;
-    }
-</style>
+    <style>
+        h1,
+        h2,
+        h3 {
+            color: #bb86fc;
+        }
+    </style>
 
-<style>
-    body {
-        background-color: #121212;
-        color: #e0e0e0;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-    }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-    .content {
-        background-color: #1f1f1f;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        max-width: 600px;
-        line-height: 1.6;
-    }
+        .content {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            line-height: 1.6;
+        }
 
-    h1 {
-        color: #bb86fc;
-    }
-</style>
+        h1 {
+            color: #bb86fc;
+        }
+    </style>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSA - Comprehensive Explanation</title>
     <style>
-        body { background-color: #121212; color: #e0e0e0; font-family: 'Arial', sans-serif; margin: 0; padding: 0; }
-        .container { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; padding: 20px; }
-        .content { background-color: #1f1f1f; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); max-width: 600px; line-height: 1.6; }
-        h1 { color: #bb86fc; }
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .content {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #bb86fc;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <div class="content"><h1>RSA (Rivest–Shamir–Adleman)</h1>
-        <h2>Comprehensive Explanation</h2>
-        <p>RSA is an asymmetric encryption algorithm used for secure data transmission. It relies on a public-private 
-        key pair generated from two large prime numbers. RSA’s security is based on the difficulty of factoring these 
-        large numbers.</p>
-        <h3>Encryption Process:</h3>
-        <ul>
-            <li><b>Key Generation:</b> Two primes, p and q, are chosen and multiplied to produce n. A public exponent 
-            e is selected, and the private key d is calculated.</li>
-            <li><b>Encryption:</b> The plaintext message is transformed into a numeric form, raised to the power of 
-            e, and taken modulo n.</li>
-            <li><b>Decryption:</b> The ciphertext is raised to the power of d, modulo n, returning the original message.</li>
-        </ul>
-        <h3>Security Features:</h3>
-        <p>RSA’s large key sizes (typically 2048 bits or higher) provide robust security, especially for digital signatures and secure key exchange.</p>
-    </div>
+        <div class="content">
+            <h1>RSA (Rivest–Shamir–Adleman)</h1>
+            <h2>Comprehensive Explanation</h2>
+            <p>RSA is an asymmetric encryption algorithm used for secure data transmission. It relies on a
+                public-private
+                key pair generated from two large prime numbers. RSA’s security is based on the difficulty of factoring
+                these
+                large numbers.</p>
+            <h3>Encryption Process:</h3>
+            <ul>
+                <li><b>Key Generation:</b> Two primes, p and q, are chosen and multiplied to produce n. A public
+                    exponent
+                    e is selected, and the private key d is calculated.</li>
+                <li><b>Encryption:</b> The plaintext message is transformed into a numeric form, raised to the power of
+                    e, and taken modulo n.</li>
+                <li><b>Decryption:</b> The ciphertext is raised to the power of d, modulo n, returning the original
+                    message.</li>
+            </ul>
+            <h3>Security Features:</h3>
+            <p>RSA’s large key sizes (typically 2048 bits or higher) provide robust security, especially for digital
+                signatures and secure key exchange.</p>
+        </div>
     </div>
 </body>
+
 </html>

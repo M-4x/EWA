@@ -103,7 +103,7 @@ def encrypt():
         public_key_data = request.form["public_key"]
         result = rsa_encrypt(message, public_key_data)
     elif encryption_type == "unicode":
-        result = "Unicode encryption is under development."
+        return render_template("encrypt.html")
 
     return render_template("encrypt.html", result=result, message=message, encryption_type=encryption_type)
 
@@ -128,6 +128,8 @@ def decryption():
     elif decryption_type == "rsa":
         private_key_data = request.form["private_key"]
         result = rsa_decrypt(encrypted_message, private_key_data)
+    elif decryption_type == "unicode":
+        return render_template("decryption.html")
 
     return render_template("decryption.html", result=result, encrypted_message=encrypted_message, decryption_type=decryption_type)
 
@@ -207,17 +209,17 @@ def des_implementation():
 # Unicode Placeholder Explanations
 @app.route("/explanation/layman/unicode")
 def unicode_layman():
-    return "<h3>Unicode Explanation - Coming Soon</h3>"
+    return render_template("unicode_layman.html")
 
 
 @app.route("/explanation/comprehensive/unicode")
 def unicode_comprehensive():
-    return "<h3>Unicode Explanation - Coming Soon</h3>"
+    return render_template("unicode_comprehensive.html")
 
 
 @app.route("/explanation/implementation/unicode")
 def unicode_implementation():
-    return "<h3>Unicode Explanation - Coming Soon</h3>"
+    return render_template("unicode_implementation.html")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Test</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            color: #bb86fc;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"] {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            border: 1px solid #bb86fc;
+            padding: 5px;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #outputText {
+            margin-top: 20px;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            padding: 10px;
+            border: 1px solid #bb86fc;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Encryption/Decryption Test</h1>
+    <form id="encryptionForm">
+        <label for="inputText">Input Text:</label>
+        <input type="text" id="inputText" required>
+
+        <label for="shift">Shift (Number):</label>
+        <input type="number" id="shift" required>
+
+        <label for="multipliers">Multipliers (Comma-separated):</label>
+        <input type="text" id="multipliers" required>
+
+        <button type="button" onclick="performEncryption()">Encrypt</button>
+        <button type="button" onclick="performDecryption()">Decrypt</button>
+    </form>
+
+    <h2>Output</h2>
+    <p id="outputText"></p>
+
+    <script>
+        function splitMultipliers(multipliers) {
+    // Split each multiplier into individual digits
+    return multipliers.flatMap((num) =>
+        num.toString().split("").map(Number)
+    );
+}
+
+function encrypt(inputText, shift, multipliers) {
+    let encryptedText = "";
+    let count = 0;
+
+    // Split multipliers into smaller components
+    multipliers = splitMultipliers(multipliers);
+
+    // Ensure shift is within the allowed range
+    shift = Math.max(-32, Math.min(93, shift));
+
+    for (let i = 0; i < inputText.length; i++) {
+        let charCode = inputText.charCodeAt(i);
+
+        // Apply multiplier to the shift
+        shift *= multipliers[count];
+        charCode += shift;
+
+        // Normalize charCode within Unicode range
+        charCode = ((charCode - 33) % (1114112 - 33 + 1)) + 33;
+
+        // Convert to character
+        let encryptedChar = String.fromCharCode(charCode);
+        encryptedText += encryptedChar;
+
+        // Adjust shift and count
+        shift = shift > 0 ? shift + 1 : shift - 1;
+        count = (count + 1) % multipliers.length;
+
+        // Keep shift within Unicode limits
+        if (shift > 1114112) shift = 33;
+        else if (shift < -1114112) shift = -33;
+    }
+
+    return encryptedText;
+}
+
+function decrypt(encryptedText, shift, multipliers) {
+    let decryptedText = "";
+    let count = 0;
+
+    // Split multipliers into smaller components
+    multipliers = splitMultipliers(multipliers);
+
+    // Invert the shift for decryption
+    shift *= -1;
+
+    for (let i = 0; i < encryptedText.length; i++) {
+        let charCode = encryptedText.charCodeAt(i);
+
+        // Apply multiplier to the shift
+        shift *= multipliers[count];
+        charCode += shift;
+
+        // Normalize charCode within Unicode range
+        charCode = ((charCode - 33) % (1114112 - 33 + 1)) + 33;
+
+        // Convert to character
+        let decryptedChar = String.fromCharCode(charCode);
+        decryptedText += decryptedChar;
+
+        // Adjust shift and count
+        shift = shift > 0 ? shift + 1 : shift - 1;
+        count = (count + 1) % multipliers.length;
+
+        // Keep shift within Unicode limits
+        if (shift > 1114112) shift = 33;
+        else if (shift < -1114112) shift = -33;
+    }
+
+    return decryptedText;
+}
+
+
+        // Perform Encryption
+        function performEncryption() {
+            const inputText = document.getElementById("inputText").value;
+            const shift = parseInt(document.getElementById("shift").value, 10);
+            const multipliers = document
+                .getElementById("multipliers")
+                .value.split(",")
+                .map(Number);
+
+            const encryptedText = encrypt(inputText, shift, multipliers);
+            document.getElementById("outputText").textContent =
+                "Encrypted Text: " + encryptedText;
+        }
+
+        // Perform Decryption
+        function performDecryption() {
+            const inputText = document.getElementById("inputText").value;
+            const shift = parseInt(document.getElementById("shift").value, 10);
+            const multipliers = document
+                .getElementById("multipliers")
+                .value.split(",")
+                .map(Number);
+
+            const decryptedText = decrypt(inputText, shift, multipliers);
+            document.getElementById("outputText").textContent =
+                "Decrypted Text: " + decryptedText;
+        }
+    </script>
+</body>
+</html>

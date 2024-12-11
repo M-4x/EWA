@@ -1,44 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<!DOCTYPE html><html lang="en"><head>
-<style>
-    h1, h2, h3 {
-        color: #bb86fc;
-    }
-</style>
+<head>
+    <style>
+        h1,
+        h2,
+        h3 {
+            color: #bb86fc;
+        }
 
-<style>
-    body {
-        background-color: #121212;
-        color: #e0e0e0;
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-    }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-    .content {
-        background-color: #1f1f1f;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        max-width: 600px;
-        line-height: 1.6;
-    }
+        .content {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            line-height: 1.6;
+        }
 
-    h1 {
-        color: #bb86fc;
-    }
-</style>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AES - Implementation</title><style>/* Styling similar to previous examples */</style></head><body>
-<div class="container"><div class="content"><h1>AES - Implementation</h1><p><strong>Code Snippet:</strong> To be implemented later.</p>
-</div></div></body></html>
+        h1 {
+            color: #bb86fc;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES - Implementation</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>AES - Implementation</h1>
+            <p><strong>Code Snippet:</strong></p>
+            <pre>
+from Crypto.Cipher import AES
+import base64
+
+def pad_message(message):
+    while len(message) % 16 != 0:
+        message += " "
+    return message
+
+def aes_encrypt(message, key):
+    cipher = AES.new(key.encode("utf8"), AES.MODE_ECB)
+    encrypted_message = cipher.encrypt(pad_message(message).encode("utf8"))
+    return base64.b64encode(encrypted_message).decode("utf8")
+        </pre>
+        </div>
+    </div>
+</body>
+
+</html>
